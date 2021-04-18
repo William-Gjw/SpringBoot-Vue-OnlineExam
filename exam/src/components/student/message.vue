@@ -24,8 +24,8 @@
       </div>
       <div class="all">
         <ul class="msglist">
-          <li class="list" 
-          @mouseenter="enter(index)" 
+          <li class="list"
+          @mouseenter="enter(index)"
           @mouseleave="leave(index)"
           v-for="(data,index) in msg" :key="index"
           >
@@ -35,7 +35,7 @@
             <div v-for="(replayData,index2) in data.replays" :key="index2">
               <p class="comment"><i class="iconfont icon-huifuxiaoxi"></i>{{replayData.replay}}</p>
             </div>
-            <span class="replay" @click="replay(data.id)" v-if="flag && index == current">Comment</span>
+            <span class="replay" @click="replay(data.id)" v-if="flag && index === current">Comment</span>
           </li>
         </ul>
       </div>
@@ -75,13 +75,13 @@ export default {
     this.getMsg()
   },
   // watch: {
-    
+
   // },
   methods: {
     getMsg() {
       this.$axios(`/api/messages/${this.pagination.current}/${this.pagination.size}`).then(res => {
         let status = res.data.code
-        if(status == 200) {
+        if(status === 200) {
           this.msg = res.data.data.records
           this.pagination = res.data.data
         }
@@ -109,7 +109,7 @@ export default {
     // },
     submit() {
       let date = new Date()
-      if(this.title.length == 0 || this.content.length == 0) { //非空判断
+      if(this.title.length === 0 || this.content.length === 0) { //非空判断
         this.$message({
           type: 'error',
           message: '留言标题或内容不能为空',
@@ -166,7 +166,7 @@ export default {
         this.$message({
           type: 'info',
           message: '取消输入'
-        });       
+        });
       });
     },
     enter(index) {
@@ -240,7 +240,7 @@ export default {
         transition: all .3s ease;
       }
       .comment {
-        margin:-7px 0px; 
+        margin:-7px 0px;
         padding-bottom: 12px;
         font-size: 13px;
         color: #28b2b4;

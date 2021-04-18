@@ -4,12 +4,12 @@
     <el-table :data="pagination.records" border>
       <el-table-column fixed="left" prop="source" label="试卷名称" width="180"></el-table-column>
       <el-table-column prop="description" label="介绍" width="200"></el-table-column>
-      <el-table-column prop="institute" label="所属学院" width="120"></el-table-column>
+      <el-table-column prop="institute" label="学校" width="120"></el-table-column>
       <el-table-column prop="major" label="所属专业" width="200"></el-table-column>
       <el-table-column prop="grade" label="年级" width="100"></el-table-column>
       <el-table-column prop="examDate" label="考试日期" width="120"></el-table-column>
-      <el-table-column prop="totalTime" label="持续时间" width="120"></el-table-column>
-      <el-table-column prop="totalScore" label="总分" width="120"></el-table-column>
+      <el-table-column prop="totalTime" label="持续时间" width="100"></el-table-column>
+      <el-table-column prop="totalScore" label="总分" width="100"></el-table-column>
       <el-table-column prop="type" label="试卷类型" width="120"></el-table-column>
       <el-table-column prop="tips" label="考生提示" width="400"></el-table-column>
       <el-table-column fixed="right" label="操作" width="150">
@@ -42,7 +42,7 @@
           <el-form-item label="介绍">
             <el-input v-model="form.description"></el-input>
           </el-form-item>
-          <el-form-item label="所属学院">
+          <el-form-item label="学校">
             <el-input v-model="form.institute"></el-input>
           </el-form-item>
           <el-form-item label="所属专业">

@@ -1,16 +1,16 @@
-// 我的考试页面
+// 我的练习页面
 <template>
   <div id="myExam">
     <div class="title">我的练习</div>
     <div class="wrapper">
       <ul class="top">
         <li class="order">
-          <el-badge :value="12" class="item" type="primary">
+          <el-badge :value="2" class="item" type="primary">
             <span>全部</span>
           </el-badge>
         </li>
         <li class="order">
-          <el-badge :value="1" class="item" type="primary">
+          <el-badge :value="2" class="item" type="primary">
             <span>未开始</span>
           </el-badge>
         </li>
@@ -20,9 +20,7 @@
           </el-badge>
         </li>
         <li class="order">
-          <el-badge :value="1" class="item">
-            <span>已过期</span>
-          </el-badge>
+          <span>已过期</span>
         </li>
         <li class="search-li"><div class="icon"><input type="text" placeholder="试卷名称" class="search" v-model="key"><i class="el-icon-search"></i></div></li>
         <li><el-button type="primary" @click="search()">搜索试卷</el-button></li>
@@ -73,7 +71,7 @@ export default {
     this.loading = true
   },
   // watch: {
-    
+
   // },
   methods: {
     //获取当前所有考试信息
@@ -99,7 +97,7 @@ export default {
     //搜索试卷
     search() {
       this.$axios('/api/exams').then(res => {
-        if(res.data.code == 200) {
+        if(res.data.code === 200) {
           let allExam = res.data.data
           let newPage = allExam.filter(item => {
             return item.source.includes(this.key)

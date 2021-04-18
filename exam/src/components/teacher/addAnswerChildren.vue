@@ -17,7 +17,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue == '选择题'">
+          <li v-if="optionValue === '选择题'">
             <span>所属章节：</span>
             <el-input
               placeholder="请输入对应章节"
@@ -26,7 +26,7 @@
               clearable>
             </el-input>
           </li>
-          <li v-if="optionValue == '填空题'">
+          <li v-if="optionValue === '填空题'">
             <span>所属章节：</span>
             <el-input
               placeholder="请输入对应章节"
@@ -35,7 +35,7 @@
               clearable>
             </el-input>
           </li>
-          <li v-if="optionValue == '判断题'">
+          <li v-if="optionValue === '判断题'">
             <span>所属章节：</span>
             <el-input
               placeholder="请输入对应章节"
@@ -44,7 +44,7 @@
               clearable>
             </el-input>
           </li>
-          <li v-if="optionValue == '选择题'">
+          <li v-if="optionValue === '选择题'">
             <span>难度等级:</span>
             <el-select v-model="postChange.level" placeholder="选择难度等级" class="w150">
               <el-option
@@ -55,7 +55,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue == '填空题'">
+          <li v-if="optionValue === '填空题'">
             <span>难度等级:</span>
             <el-select v-model="postFill.level" placeholder="选择难度等级" class="w150">
               <el-option
@@ -66,7 +66,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue == '判断题'">
+          <li v-if="optionValue === '判断题'">
             <span>难度等级:</span>
             <el-select v-model="postJudge.level" placeholder="选择难度等级" class="w150">
               <el-option
@@ -77,7 +77,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue == '选择题'">
+          <li v-if="optionValue === '选择题'">
             <span>正确选项:</span>
             <el-select v-model="postChange.rightAnswer" placeholder="选择正确答案" class="w150">
               <el-option
@@ -90,7 +90,7 @@
           </li>
         </ul>
         <!-- 选择题部分 -->
-        <div class="change" v-if="optionValue == '选择题'">
+        <div class="change" v-if="optionValue === '选择题'">
           <div class="title">
             <el-tag>题目:</el-tag><span>在下面的输入框中输入题目,形如--DNS 服务器和DHCP服务器的作用是（）</span>
             <el-input
@@ -154,9 +154,9 @@
           </div>
         </div>
         <!-- 填空题部分 -->
-        <div class="change fill" v-if="optionValue == '填空题'">
+        <div class="change fill" v-if="optionValue === '填空题'">
           <div class="title">
-            <el-tag>题目:</el-tag><span>输入题目,形如--从计算机网络系统组成的角度看，计算机网络可以分为()和()。注意需要考生答题部分一定要用括号（英文半角）括起来。</span>
+            <el-tag>题目:</el-tag><span>输入题目,形如--下列各项属于我国特产珍稀动物的是() 注意需要考生答题部分一定要用括号（英文半角）括起来。</span>
             <el-input
               type="textarea"
               rows="4"
@@ -186,7 +186,7 @@
           </div>
         </div>
         <!-- 判断题 -->
-        <div class="change judge" v-if="optionValue == '判断题'">
+        <div class="change judge" v-if="optionValue === '判断题'">
           <div class="title">
             <el-tag>题目:</el-tag><span>在下面的输入框中输入题目</span>
             <el-input
@@ -235,13 +235,13 @@
             </el-select>
           </li>
           <li>
-            <span>选择题数量：</span> <el-input type="text" v-model="changeNumber"></el-input>
+            <span>选择题数量：</span> <el-input type="text" v-model="changeNumber" placeholder="填写数字"></el-input>
           </li>
           <li>
-            <span>填空题数量：</span> <el-input type="text" v-model="fillNumber"></el-input>
+            <span>填空题数量：</span> <el-input type="text" v-model="fillNumber" placeholder="填写数字"></el-input>
           </li>
           <li>
-            <span>判断题数量：</span> <el-input type="text" v-model="judgeNumber"></el-input>
+            <span>判断题数量：</span> <el-input type="text" v-model="judgeNumber" placeholder="填写数字"></el-input>
           </li>
           <li>
             <el-button type="primary" @click="create()">立即组卷</el-button>
@@ -335,7 +335,7 @@ export default {
       subject: '', //试卷名称用来接收路由参数
       postChange: { //选择题提交内容
         subject: '', //试卷名称
-        level: '', //难度等级选中值 
+        level: '', //难度等级选中值
         rightAnswer: '', //正确答案选中值
         section: '', //对应章节
         question: '', //题目
@@ -347,7 +347,7 @@ export default {
       },
       postFill: { //填空题提交内容
         subject: '', //试卷名称
-        level: '', //难度等级选中值 
+        level: '', //难度等级选中值
         answer: '', //正确答案
         section: '', //对应章节
         question: '', //题目
@@ -355,7 +355,7 @@ export default {
       },
       postJudge: { //判断题提交内容
         subject: '', //试卷名称
-        level: '', //难度等级选中值 
+        level: '', //难度等级选中值
         answer: '', //正确答案
         section: '', //对应章节
         question: '', //题目
@@ -368,13 +368,12 @@ export default {
       }
     };
   },
+  //生命周期创建成功后执行
   created() {
     this.getParams()
   },
   methods: {
-    // handleClick(tab, event) {
-    //   console.log(tab, event);
-    // },
+    //立即组卷执行函数
     create() {
       this.$axios({
         url: '/api/item',
@@ -384,12 +383,12 @@ export default {
           fillNumber: this.fillNumber,
           judgeNumber: this.judgeNumber,
           paperId: this.paperId,
-          subject: '计算机网络' //题目数量太少，指定为计算机网络出题
+          subject: this.subject
         }
       }).then(res => {
         console.log(res)
         let data = res.data
-        if(data.code==200){
+        if(data.code === 200){
           setTimeout(() => {
             this.$router.push({path: '/selectAnswer'})
           },1000)
@@ -397,7 +396,7 @@ export default {
             message: data.message,
             type: 'success'
           })
-        }else if(data.code==400){
+        }else if(data.code === 400){
             this.$message({
             message: data.message,
             type: 'error'
@@ -419,11 +418,11 @@ export default {
         url: '/api/MultiQuestion',
         method: 'post',
         data: {
-          ...this.postChange          
+          ...this.postChange
         }
       }).then(res => { //添加成功显示提示
         let status = res.data.code
-        if(status == 200) {
+        if(status === 200) {
           this.$message({
             message: '已添加到题库',
             type: 'success'
@@ -432,8 +431,7 @@ export default {
         }
       }).then(() => {
         this.$axios(`/api/multiQuestionId`).then(res => { //获取当前题目的questionId
-          let questionId = res.data.data.questionId
-          this.postPaper.questionId = questionId
+          this.postPaper.questionId = res.data.data.questionId
           this.postPaper.questionType = 1
           this.$axios({
             url: '/api/paperManage',
@@ -455,7 +453,7 @@ export default {
         }
       }).then(res => {
         let status = res.data.code
-        if(status == 200) {
+        if(status === 200) {
           this.$message({
             message: '已添加到题库',
             type: 'success'
@@ -464,8 +462,7 @@ export default {
         }
       }).then(() => {
         this.$axios(`/api/fillQuestionId`).then(res => { //获取当前题目的questionId
-          let questionId = res.data.data.questionId
-          this.postPaper.questionId = questionId
+          this.postPaper.questionId = res.data.data.questionId
           this.postPaper.questionType = 2
           this.$axios({
             url: '/api/paperManage',
@@ -487,7 +484,7 @@ export default {
         }
       }).then(res => {
         let status = res.data.code
-        if(status == 200) {
+        if(status === 200) {
           this.$message({
             message: '已添加到题库',
             type: 'success'
@@ -496,8 +493,7 @@ export default {
         }
       }).then(() => {
         this.$axios(`/api/judgeQuestionId`).then(res => { //获取当前题目的questionId
-          let questionId = res.data.data.questionId
-          this.postPaper.questionId = questionId
+          this.postPaper.questionId = res.data.data.questionId
           this.postPaper.questionType = 3
           this.$axios({
             url: '/api/paperManage',
@@ -515,19 +511,19 @@ export default {
 
 <style lang="scss" scoped>
 .add {
-  margin: 0px 40px;
+  margin: 0 50px;
   .box {
-    padding: 0px 20px;
+    padding: 0 20px;
     ul li {
-      margin: 10px 0px;
+      margin: 10px 0;
       display: flex;
       align-items: center;
       .el-input {
-        width: 6%;
+        width: 10%;
       }
       .w150 {
-        margin-left: 20px;
-        width: 7%;
+        margin-left: 28px;
+        width: 10%;
       }
     }
   }
@@ -538,7 +534,7 @@ export default {
     margin-right: 10px;
   }
   .append {
-    margin: 0px 20px;
+    margin: 0 20px;
     ul {
       display: flex;
       align-items: center;
@@ -558,7 +554,7 @@ export default {
           margin-right: 6px;
         }
         .answer {
-          margin: 20px 0px 20px 8px;
+          margin: 20px 0 20px 8px;
         }
         .el-textarea {
           width: 98% !important;
@@ -574,7 +570,7 @@ export default {
           justify-content: center;
           align-items: center;
           width: 98%;
-          margin: 10px 0px;
+          margin: 10px 0;
           span {
             margin-right: 20px;
           }
@@ -584,7 +580,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-      }        
+      }
     }
     .fill {
       .fillAnswer {
@@ -609,14 +605,7 @@ export default {
         margin-bottom: 20px;
       }
     }
-    .w150 {
-      width: 150px;
-    }
-    li:nth-child(2) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+
   }
 }
 </style>

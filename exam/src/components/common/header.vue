@@ -4,7 +4,7 @@
     <el-row>
       <el-col :span="4" class="topbar-left">
         <i class="iconfont icon-kaoshi"></i>
-        <span class="title" @click="index()">EXAM-SYSTEM</span>
+        <span class="title" @click="index()">在线考试系统</span>
       </el-col>
       <el-col :span="20" class="topbar-right">
         <i class="el-icon-menu" @click="toggle()"></i>
@@ -36,7 +36,7 @@ export default {
       user: { //用户信息
         userName: null,
         userId: null
-      } 
+      }
     }
   },
   created() {
@@ -84,7 +84,7 @@ export default {
 #topbar {
   position: relative;
   z-index: 10;
-  background-color: #124280;
+  background-color: skyblue;
   height: 80px;
   line-height: 80px;
   color: #fff;
@@ -129,10 +129,12 @@ export default {
   cursor: pointer;
 }
 .user .out {
+  width: auto;
+  text-align: center;
   font-size: 14px;
   position: absolute;
   top: 80px;
-  right: 0px;
+  right: 0;
   background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 12px;

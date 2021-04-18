@@ -3,36 +3,36 @@
   <section class="add">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="试卷名称">
-        <el-input v-model="form.source"></el-input>
+        <el-input v-model="form.source" placeholder="请输入考试课程名称"></el-input>
       </el-form-item>
       <el-form-item label="介绍">
-        <el-input v-model="form.description"></el-input>
+        <el-input v-model="form.description" placeholder="如：2021上期期末考试"></el-input>
       </el-form-item>
-      <el-form-item label="所属学院">
-        <el-input v-model="form.institute"></el-input>
+      <el-form-item label="学校">
+        <el-input v-model="form.institute" placeholder="请输入学校名称"></el-input>
       </el-form-item>
-      <el-form-item label="所属专业">
-        <el-input v-model="form.major"></el-input>
+      <el-form-item label="所属科目">
+        <el-input v-model="form.major" placeholder="请输入科目名称"></el-input>
       </el-form-item>
       <el-form-item label="年级">
-        <el-input v-model="form.grade"></el-input>
+        <el-input v-model="form.grade" placeholder="如：2017级"></el-input>
       </el-form-item>
       <el-form-item label="考试日期">
         <el-col :span="11">
           <el-date-picker placeholder="选择日期" v-model="form.examDate" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="持续时间">
-        <el-input v-model="form.totalTime"></el-input>
+      <el-form-item label="持续时间（分钟）">
+        <el-input v-model="form.totalTime" placeholder="如：120"></el-input>
       </el-form-item>
       <el-form-item label="总分">
-        <el-input v-model="form.totalScore"></el-input>
+        <el-input v-model="form.totalScore" placeholder="如：100"></el-input>
       </el-form-item>
       <el-form-item label="考试类型">
-        <el-input v-model="form.type"></el-input>
+        <el-input v-model="form.type" placeholder="如：期末考试"></el-input>
       </el-form-item>
       <el-form-item label="考生提示">
-        <el-input type="textarea" v-model="form.tips"></el-input>
+        <el-input type="textarea" v-model="form.tips" placeholder="请填写考生注意事项"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit()">立即创建</el-button>
@@ -84,7 +84,7 @@ export default {
             ...this.form
           }
         }).then(res => {
-          if(res.data.code == 200) {
+          if(res.data.code === 200) {
             this.$message({
               message: '数据添加成功',
               type: 'success'
@@ -97,14 +97,13 @@ export default {
     cancel() { //取消按钮
       this.form = {}
     },
-    
   }
 };
 </script>
 <style lang="scss" scoped>
 .add {
-  padding: 0px 40px;
-  width: 400px;
+  padding: 0 60px;
+  width: 500px;
 }
 </style>
 
