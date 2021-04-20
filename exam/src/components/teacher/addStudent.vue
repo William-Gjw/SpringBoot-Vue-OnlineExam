@@ -11,9 +11,6 @@
       <el-form-item label="学院">
         <el-input v-model="form.institute"></el-input>
       </el-form-item>
-      <el-form-item label="所属专业">
-        <el-input v-model="form.major"></el-input>
-      </el-form-item>
       <el-form-item label="年级">
         <el-input v-model="form.grade"></el-input>
       </el-form-item>
@@ -80,7 +77,7 @@ export default {
     cancel() { //取消按钮
       this.form = {}
     },
-    
+
   }
 };
 </script>

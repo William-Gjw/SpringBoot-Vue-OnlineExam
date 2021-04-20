@@ -32,7 +32,7 @@ public class ScoreController {
 
 //    不分页
     @GetMapping("/score/{studentId}")
-        public ApiResult findById(@PathVariable("studentId") Integer studentId) {
+    public ApiResult findById(@PathVariable("studentId") Integer studentId) {
         List<Score> res = scoreService.findById(studentId);
         if (!res.isEmpty()) {
             return ApiResultHandler.buildApiResult(200, "根据ID查询成绩", res);

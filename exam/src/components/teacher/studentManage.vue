@@ -4,7 +4,6 @@
     <el-table :data="pagination.records" border>
       <el-table-column fixed="left" prop="studentName" label="姓名" width="180"></el-table-column>
       <el-table-column prop="institute" label="学院" width="200"></el-table-column>
-      <el-table-column prop="major" label="专业" width="200"></el-table-column>
       <el-table-column prop="grade" label="年级" width="200"></el-table-column>
       <el-table-column prop="clazz" label="班级" width="100"></el-table-column>
       <el-table-column prop="sex" label="性别" width="120"></el-table-column>
@@ -28,7 +27,7 @@
     </el-pagination>
     <!-- 编辑对话框-->
     <el-dialog
-      title="编辑试卷信息"
+      title="编辑学生信息"
       :visible.sync="dialogVisible"
       width="30%"
       :before-close="handleClose">
@@ -39,9 +38,6 @@
           </el-form-item>
           <el-form-item label="学院">
             <el-input v-model="form.institute"></el-input>
-          </el-form-item>
-          <el-form-item label="专业">
-            <el-input v-model="form.major"></el-input>
           </el-form-item>
           <el-form-item label="年级">
             <el-input v-model="form.grade"></el-input>

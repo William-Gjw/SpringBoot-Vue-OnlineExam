@@ -34,7 +34,7 @@
     </el-row>
     <el-row class="footer">
       <el-col>
-        <p class="msg2">版权所有 ©2019 <!--重庆文理学院计科2班余晓江--> 保留所有权利  <a href="http://beian.miit.gov.cn/" target="_blank">渝ICP备19001371号</a></p>
+        <p class="msg2">版权所有 ©2021 保留所有权利  <a href="#" target="_blank">沈ICP备xxxxxxx号</a></p>
       </el-col>
     </el-row>
     <section class="remind">
@@ -56,7 +56,7 @@ export default {
       role: 2,
       labelPosition: 'left',
       formLabelAlign: {
-        username: '20154084',
+        username: '17008002',
         password: '123456'
       }
     }

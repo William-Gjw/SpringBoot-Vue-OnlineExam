@@ -35,7 +35,7 @@
             <div v-for="(replayData,index2) in data.replays" :key="index2">
               <p class="comment"><i class="iconfont icon-huifuxiaoxi"></i>{{replayData.replay}}</p>
             </div>
-            <span class="replay" @click="replay(data.id)" v-if="flag && index === current">Comment</span>
+            <span class="replay" @click="replay(data.id)" v-if="flag && index == current">评论</span>
           </li>
         </ul>
       </div>
@@ -81,7 +81,7 @@ export default {
     getMsg() {
       this.$axios(`/api/messages/${this.pagination.current}/${this.pagination.size}`).then(res => {
         let status = res.data.code
-        if(status === 200) {
+        if(status == 200) {
           this.msg = res.data.data.records
           this.pagination = res.data.data
         }
@@ -97,19 +97,12 @@ export default {
       this.pagination.current = val
       this.getMsg()
     },
-    // formatTime(date) { //日期格式化
-    //   let year = date.getFullYear()
-    //   let month= date.getMonth()+ 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-    //   let day=date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-    //   let hours=date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-    //   let minutes=date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-    //   let seconds=date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-    //   // 拼接
-    //   return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
-    // },
+
     submit() {
+      //获取当前时间
       let date = new Date()
-      if(this.title.length === 0 || this.content.length === 0) { //非空判断
+      //非空判断
+      if(this.title.length == 0 || this.content.length == 0) {
         this.$message({
           type: 'error',
           message: '留言标题或内容不能为空',
@@ -134,14 +127,18 @@ export default {
         this.getMsg()
       })
     }
+      //清空留言框
       this.title = ""
       this.content = ""
+      //重新获取留言
       this.getMsg()
     },
-    replay(messageId) { //回复留言功能
+    //回复留言功能
+    replay(messageId) {
       this.$prompt('回复留言', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
+        //正则表达式
         inputPattern: /^[\s\S]*.*[^\s][\s\S]*$/,
         inputErrorMessage: '回复不能为空'
       }).then(({ value }) => {

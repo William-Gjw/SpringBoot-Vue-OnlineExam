@@ -55,7 +55,7 @@ export default {
     },
     addData() {
       let role = this.$cookies.get("role")
-      if(role === 0) {
+      if(role == 0) {
         this.menu.push({
           index: '5',
           title: '教师管理',

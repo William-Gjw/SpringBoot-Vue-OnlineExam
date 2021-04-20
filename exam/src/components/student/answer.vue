@@ -8,12 +8,12 @@
          <li>{{examData.type}}-{{examData.source}}</li>
          <li @click="flag = !flag">
            <i class="iconfont icon-user icon20"></i>
+           <i class="iconfont icon-arrLeft icon20"></i>
            <div class="msg"  v-if="flag" @click="flag = !flag">
              <p>姓名：{{userInfo.name}}</p>
              <p>准考证号:  {{userInfo.id}}</p>
            </div>
          </li>
-         <li><i class="iconfont icon-arrLeft icon20"></i></li>
        </ul>
      </div>
      <div class="flexarea">
@@ -43,7 +43,7 @@
                 <p>选择题部分</p>
                 <ul>
                   <li v-for="(list, index1) in topic[1]" :key="index1">
-                    <a href="javascript:;" 
+                    <a href="javascript:;"
                       @click="change(index1)"
                       :class="{'border': index == index1 && currentType == 1,'bg': bg_flag && topic[1][index1].isClick == true}">
                       <span :class="{'mark': topic[1][index1].isMark == true}"></span>
@@ -71,8 +71,8 @@
               <div class="final" @click="commit()">结束考试</div>
             </div>
           </div>
-        </transition>  
-        <!--右边选择答题区-->
+        </transition>
+        <!--右边答题区-->
         <transition name="slider-fade">
         <div class="right">
           <div class="title">
@@ -136,7 +136,7 @@
           </div>
         </div>
         </transition>
-     </div> 
+     </div>
   </div>
 </template>
 
@@ -202,9 +202,6 @@ export default {
     getCookies() {  //获取cookie
       this.userInfo.name = this.$cookies.get("cname")
       this.userInfo.id = this.$cookies.get("cid")
-    },
-    calcuScore() { //计算答题分数
-      
     },
     getExamData() { //获取当前试卷所有信息
       let date = new Date()
@@ -290,7 +287,7 @@ export default {
           let part= this.showQuestion.split("()").length -1 //根据题目中括号的数量确定填空横线数量
           this.part = part
           this.number = this.topicCount[0] + index + 1
-        } 
+        }
       }else if(index >= len) {
         this.index = 0
         this.judge(this.index)
@@ -326,7 +323,7 @@ export default {
         data[this.index]["isClick"] = true
       }
       /* 保存学生答题选项 */
-      this.topic1Answer[this.index] = val 
+      this.topic1Answer[this.index] = val
     },
     getJudgeLabel(val) {  //获取判断题作答选项
       this.judgeAnswer[this.index] = val
@@ -339,10 +336,10 @@ export default {
     previous() { //上一题
       this.index --
       switch(this.currentType) {
-        case 1: 
+        case 1:
           this.change(this.index)
           break
-        case 2: 
+        case 2:
           this.fill(this.index)
           break
         case 3:
@@ -353,10 +350,10 @@ export default {
     next() { //下一题
       this.index ++
       switch(this.currentType) {
-        case 1: 
+        case 1:
           this.change(this.index)
           break
-        case 2: 
+        case 2:
           this.fill(this.index)
           break
         case 3:
@@ -367,13 +364,13 @@ export default {
     mark() { //标记功能
       switch(this.currentType) {
         case 1:
-          this.topic[1][this.index]["isMark"] = true //选择题标记
+          this.topic[1][this.index]["isMark"] = !this.topic[1][this.index]["isMark"] //选择题标记
           break
         case 2:
-          this.topic[2][this.index]["isMark"] = true //填空题标记
+          this.topic[2][this.index]["isMark"] = !this.topic[2][this.index]["isMark"] //填空题标记
           break
         case 3:
-          this.topic[3][this.index]["isMark"] = true //判断题标记
+          this.topic[3][this.index]["isMark"] = !this.topic[3][this.index]["isMark"] //判断题标记
       }
     },
     commit() { //答案提交计算分数
@@ -455,11 +452,11 @@ export default {
           }).then(res => {
             if(res.data.code == 200) {
               this.$router.push({path:'/studentScore',query: {
-                score: finalScore, 
+                score: finalScore,
                 startTime: this.startTime,
-                endTime: this.endTime
+                endTime: this.endTime,
               }})
-            }  
+            }
           })
         }).catch(() => {
           console.log("继续答题")
@@ -594,7 +591,7 @@ export default {
 }
 .content .topic {
   padding: 20px 0px;
-  padding-top: 30px; 
+  padding-top: 30px;
 }
 .right .content {
   background-color: #fff;
@@ -680,7 +677,7 @@ export default {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.l-bottom .item ul li a { 
+.l-bottom .item ul li a {
   position: relative;
   justify-content: center;
   display: inline-flex;

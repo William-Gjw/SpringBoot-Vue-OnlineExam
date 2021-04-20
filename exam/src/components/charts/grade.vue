@@ -32,6 +32,7 @@ export default {
             this.tableDataX.push(`第${index + 1}次`)
             this.tableDataY.push(element.etScore)
           });
+          //在ref="box"中绘制图形
           let boxDom = this.$refs["box"];
           let scoreCharts = this.$echarts.init(boxDom);
           let option = {

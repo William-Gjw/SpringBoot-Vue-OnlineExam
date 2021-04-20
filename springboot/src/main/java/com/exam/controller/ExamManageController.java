@@ -52,9 +52,6 @@ public class ExamManageController {
     @PutMapping("/exam")
     public ApiResult update(@RequestBody ExamManage exammanage){
         int res = examManageService.update(exammanage);
-//        if (res == 0) {
-//            return ApiResultHandler.buildApiResult(20000,"请求参数错误");
-//        }
         System.out.print("更新操作执行---");
         return ApiResultHandler.buildApiResult(200,"更新成功",res);
     }

@@ -17,7 +17,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue === '选择题'">
+          <li v-if="optionValue == '选择题'">
             <span>所属章节：</span>
             <el-input
               placeholder="请输入对应章节"
@@ -26,7 +26,7 @@
               clearable>
             </el-input>
           </li>
-          <li v-if="optionValue === '填空题'">
+          <li v-if="optionValue == '填空题'">
             <span>所属章节：</span>
             <el-input
               placeholder="请输入对应章节"
@@ -35,7 +35,7 @@
               clearable>
             </el-input>
           </li>
-          <li v-if="optionValue === '判断题'">
+          <li v-if="optionValue == '判断题'">
             <span>所属章节：</span>
             <el-input
               placeholder="请输入对应章节"
@@ -44,7 +44,7 @@
               clearable>
             </el-input>
           </li>
-          <li v-if="optionValue === '选择题'">
+          <li v-if="optionValue == '选择题'">
             <span>难度等级:</span>
             <el-select v-model="postChange.level" placeholder="选择难度等级" class="w150">
               <el-option
@@ -55,7 +55,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue === '填空题'">
+          <li v-if="optionValue == '填空题'">
             <span>难度等级:</span>
             <el-select v-model="postFill.level" placeholder="选择难度等级" class="w150">
               <el-option
@@ -66,7 +66,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue === '判断题'">
+          <li v-if="optionValue == '判断题'">
             <span>难度等级:</span>
             <el-select v-model="postJudge.level" placeholder="选择难度等级" class="w150">
               <el-option
@@ -77,7 +77,7 @@
               </el-option>
             </el-select>
           </li>
-          <li v-if="optionValue === '选择题'">
+          <li v-if="optionValue == '选择题'">
             <span>正确选项:</span>
             <el-select v-model="postChange.rightAnswer" placeholder="选择正确答案" class="w150">
               <el-option
@@ -90,7 +90,7 @@
           </li>
         </ul>
         <!-- 选择题部分 -->
-        <div class="change" v-if="optionValue === '选择题'">
+        <div class="change" v-if="optionValue == '选择题'">
           <div class="title">
             <el-tag>题目:</el-tag><span>在下面的输入框中输入题目,形如--DNS 服务器和DHCP服务器的作用是（）</span>
             <el-input
@@ -154,7 +154,7 @@
           </div>
         </div>
         <!-- 填空题部分 -->
-        <div class="change fill" v-if="optionValue === '填空题'">
+        <div class="change fill" v-if="optionValue == '填空题'">
           <div class="title">
             <el-tag>题目:</el-tag><span>输入题目,形如--下列各项属于我国特产珍稀动物的是() 注意需要考生答题部分一定要用括号（英文半角）括起来。</span>
             <el-input
@@ -186,7 +186,7 @@
           </div>
         </div>
         <!-- 判断题 -->
-        <div class="change judge" v-if="optionValue === '判断题'">
+        <div class="change judge" v-if="optionValue == '判断题'">
           <div class="title">
             <el-tag>题目:</el-tag><span>在下面的输入框中输入题目</span>
             <el-input
@@ -388,7 +388,7 @@ export default {
       }).then(res => {
         console.log(res)
         let data = res.data
-        if(data.code === 200){
+        if(data.code == 200){
           setTimeout(() => {
             this.$router.push({path: '/selectAnswer'})
           },1000)
@@ -396,7 +396,7 @@ export default {
             message: data.message,
             type: 'success'
           })
-        }else if(data.code === 400){
+        }else if(data.code == 400){
             this.$message({
             message: data.message,
             type: 'error'
@@ -412,7 +412,8 @@ export default {
       this.subject = subject
       this.postPaper.paperId = paperId
     },
-    changeSubmit() { //选择题题库提交
+    //选择题题库提交
+    changeSubmit() {
       this.postChange.subject = this.subject
       this.$axios({ //提交数据到选择题题库表
         url: '/api/MultiQuestion',
@@ -422,7 +423,7 @@ export default {
         }
       }).then(res => { //添加成功显示提示
         let status = res.data.code
-        if(status === 200) {
+        if(status == 200) {
           this.$message({
             message: '已添加到题库',
             type: 'success'
@@ -443,7 +444,8 @@ export default {
         })
       })
     },
-    fillSubmit() { //填空题提交
+    //填空题提交
+    fillSubmit() {
       this.postFill.subject = this.subject
       this.$axios({
         url: '/api/fillQuestion',
@@ -453,7 +455,7 @@ export default {
         }
       }).then(res => {
         let status = res.data.code
-        if(status === 200) {
+        if(status == 200) {
           this.$message({
             message: '已添加到题库',
             type: 'success'
@@ -474,7 +476,8 @@ export default {
         })
       })
     },
-    judgeSubmit() { //判断题提交
+    //判断题提交
+    judgeSubmit() {
       this.postJudge.subject = this.subject
       this.$axios({
         url: '/api/judgeQuestion',
@@ -484,7 +487,7 @@ export default {
         }
       }).then(res => {
         let status = res.data.code
-        if(status === 200) {
+        if(status == 200) {
           this.$message({
             message: '已添加到题库',
             type: 'success'
@@ -540,6 +543,9 @@ export default {
       align-items: center;
       li {
         margin-right: 20px;
+        .w150{
+          width: 200px;
+        }
       }
     }
     .change {
@@ -605,7 +611,6 @@ export default {
         margin-bottom: 20px;
       }
     }
-
   }
 }
 </style>

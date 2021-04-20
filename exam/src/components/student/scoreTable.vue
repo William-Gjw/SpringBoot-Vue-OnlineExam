@@ -48,7 +48,7 @@
 export default {
   data() {
     return {
-      pagination: { //分页后的留言列表
+      pagination: { //分页后的列表
         current: 1, //当前页
         total: null, //记录条数
         size: 10 //每页条数
@@ -77,7 +77,8 @@ export default {
             return newVal
           })
           let hash = []
-          const newArr = mapVal.reduce((item, next) => { //对新对象进行去重操作
+          const newArr = mapVal.reduce((item, next) => {
+            //对新对象进行去重操作
             hash[next.text] ? '' : hash[next.text] = true && item.push(next);
             return item
           }, []);
