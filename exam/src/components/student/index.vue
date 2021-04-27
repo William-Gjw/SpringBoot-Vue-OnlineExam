@@ -105,7 +105,7 @@ li {
 }
 #student .list li:hover {
   background-color: #0195ff;
-  transition: all 2s ease;
+  transition: all 1s ease;
 }
 #student .list li:hover a {
   color: #fff;
